@@ -1,0 +1,1477 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="img/logo_marcos_branco-.png">
+    <title>Marcos Tattoo | Estúdio de Tatuagem</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="stiles.css">
+
+    <style>
+    .floating-controls {
+        position: fixed;
+        top: 88px;
+        right: 24px;
+        z-index: 9999;
+        display: flex;
+        align-items: flex-end;
+    }
+    .floating-menu-btn {
+        position: relative;
+        background: #18181b;
+        border-radius: 50px;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+        display: inline-flex;
+        align-items: center;
+        gap: 0.7rem;
+        padding: 0.55rem 1rem;
+        color: #fff;
+        font-weight: 600;
+        font-size: 1rem;
+        cursor: pointer;
+        border: 2px solid #e11d48;
+        transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
+    }
+    .floating-menu-btn:hover {
+        background: #e11d48;
+        color: #fff;
+        box-shadow: 0 8px 32px rgba(225,29,72,0.18);
+        transform: translateY(-1px);
+    }
+    .menu-current-lang {
+        min-width: 28px;
+        text-align: center;
+    }
+    .control-menu-panel {
+        display: none;
+        position: absolute;
+        top: calc(100% + 10px);
+        right: 0;
+        width: 220px;
+        background: #18181b;
+        border-radius: 16px;
+        box-shadow: 0 16px 40px rgba(0,0,0,0.25);
+        padding: 0.85rem;
+        border: 1.5px solid #e11d48;
+    }
+    .control-menu-panel.active {
+        display: block;
+    }
+    .control-menu-section + .control-menu-section {
+        margin-top: 0.85rem;
+        padding-top: 0.85rem;
+        border-top: 1px solid rgba(255,255,255,0.12);
+    }
+    .control-menu-title {
+        color: #fda4af;
+        font-size: 0.78rem;
+        font-weight: 700;
+        letter-spacing: 0.08em;
+        text-transform: uppercase;
+        margin-bottom: 0.65rem;
+    }
+    .lang-options {
+        display: flex;
+        flex-direction: column;
+        gap: 0.35rem;
+    }
+    .lang-option {
+        color: #fff;
+        padding: 0.6rem 0.8rem;
+        cursor: pointer;
+        transition: background 0.2s;
+        border-radius: 10px;
+    }
+    .lang-option:hover {
+        background: #e11d48;
+    }
+    .floating-theme-btn {
+        width: 100%;
+        background: transparent;
+        border-radius: 12px;
+        box-shadow: none;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 0.55rem;
+        padding: 0.7rem 0.8rem;
+        color: #fff;
+        font-weight: 600;
+        font-size: 0.95rem;
+        cursor: pointer;
+        border: 1px solid rgba(255,255,255,0.12);
+        transition: background 0.2s, box-shadow 0.2s, transform 0.2s;
+    }
+    .floating-theme-btn:hover {
+        background: #e11d48;
+        color: #fff;
+        box-shadow: none;
+        transform: translateY(-1px);
+    }
+    .theme-btn-label {
+        white-space: nowrap;
+    }
+    body.light-theme {
+        background: #f8fafc;
+        color: #111827;
+    }
+    body.light-theme header {
+        background: rgba(255, 255, 255, 0.94) !important;
+        border-bottom: 1px solid rgba(148, 163, 184, 0.35);
+    }
+    body.light-theme .bg-black,
+    body.light-theme .bg-zinc-900 {
+        background: #f8fafc !important;
+    }
+    body.light-theme .bg-zinc-800,
+    body.light-theme .bg-zinc-700 {
+        background: #ffffff !important;
+        border: 1px solid #dbe4ee;
+        box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
+    }
+    body.light-theme .text-white {
+        color: #111827 !important;
+    }
+    body.light-theme .text-gray-300 {
+        color: #334155 !important;
+    }
+    body.light-theme .text-gray-400 {
+        color: #475569 !important;
+    }
+    body.light-theme .text-gray-300.hover\:text-white:hover,
+    body.light-theme .hover\:text-white:hover {
+        color: #be123c !important;
+    }
+    body.light-theme .border-white {
+        border-color: #94a3b8 !important;
+        color: #111827 !important;
+    }
+    body.light-theme .hover\:bg-white:hover {
+        background: #e2e8f0 !important;
+        color: #111827 !important;
+    }
+    body.light-theme input,
+    body.light-theme textarea,
+    body.light-theme select {
+        background: #ffffff !important;
+        color: #111827 !important;
+        border-color: #cbd5e1 !important;
+    }
+    body.light-theme input::placeholder,
+    body.light-theme textarea::placeholder {
+        color: #64748b !important;
+    }
+    body.light-theme .modal > div,
+    body.light-theme #event-img-modal,
+    body.light-theme #piercing-img-modal {
+        color: #111827;
+    }
+    body.light-theme .floating-menu-btn,
+    body.light-theme .floating-theme-btn,
+    body.light-theme .control-menu-panel {
+        background: #ffffff;
+        color: #111827;
+        box-shadow: 0 10px 24px rgba(15, 23, 42, 0.12);
+    }
+    body.light-theme .floating-theme-btn {
+        background: #ffffff;
+        border-color: #dbe4ee;
+        box-shadow: none;
+    }
+    body.light-theme .lang-option {
+        color: #111827;
+    }
+    body.light-theme .floating-menu-btn:hover,
+    body.light-theme .floating-theme-btn:hover,
+    body.light-theme .lang-option:hover {
+        color: #ffffff;
+    }
+    body.light-theme .control-menu-section + .control-menu-section {
+        border-top-color: rgba(148, 163, 184, 0.4);
+    }
+    body.light-theme .gallery-modal-backdrop {
+        background: rgba(255, 255, 255, 0.82);
+    }
+    body.light-theme #preloader {
+        background: rgba(248, 250, 252, 0.96) !important;
+    }
+    #back-to-top {
+        bottom: 96px;
+    }
+    div[vw].enabled {
+        z-index: 9998;
+    }
+    div[vw-access-button] {
+        opacity: 0 !important;
+        pointer-events: none !important;
+    }
+    @media (max-width: 768px) {
+        .floating-controls {
+            top: 78px;
+            right: 12px;
+        }
+        .floating-menu-btn {
+            padding: 0.45rem 0.9rem;
+            font-size: 0.95rem;
+        }
+        .floating-theme-btn {
+            padding: 0.45rem 0.8rem;
+            font-size: 0.9rem;
+        }
+        .control-menu-panel {
+            width: 200px;
+            padding: 0.75rem;
+        }
+        .lang-option {
+            padding: 0.45rem 0.9rem;
+            font-size: 0.9rem;
+        }
+        #back-to-top {
+            right: 16px;
+            bottom: 88px;
+        }
+        div[vw-plugin-wrapper] {
+            max-width: calc(100vw - 24px);
+            max-height: calc(100vh - 32px);
+            right: 12px !important;
+            left: 12px !important;
+            bottom: 72px !important;
+        }
+        div[vw-plugin-wrapper] .vw-plugin-top-wrapper {
+            max-width: 100%;
+            max-height: calc(100vh - 96px);
+            overflow: auto;
+            border-radius: 16px;
+        }
+    }
+    </style>
+
+</head>
+<body>
+    <div class="floating-controls">
+        <button class="floating-menu-btn" id="controlMenuBtn" type="button" aria-label="Abrir menu de acessibilidade e idioma">
+            <i class="fa-solid fa-globe"></i>
+            <span class="menu-current-lang" id="currentLang">PT</span>
+            <i class="fa-solid fa-bars"></i>
+        </button>
+        <div class="control-menu-panel" id="controlMenuPanel">
+            <div class="control-menu-section">
+                <div class="control-menu-title">Acessibilidade</div>
+                <button class="floating-theme-btn" id="vlibrasToggle" type="button" aria-label="Abrir VLibras">
+                    <span class="theme-btn-label" id="vlibrasToggleLabel">VLibras</span>
+                    <i class="fa-solid fa-hands" aria-hidden="true"></i>
+                </button>
+                <button class="floating-theme-btn" id="themeToggle" type="button" aria-label="Ativar tema claro">
+                    <span class="theme-btn-label" id="themeToggleLabel">Tema claro</span>
+                    <i class="fa-solid fa-sun" id="themeToggleIcon"></i>
+                </button>
+            </div>
+            <div class="control-menu-section">
+                <div class="control-menu-title">Idioma</div>
+                <div class="lang-options" id="langOptions">
+                    <div class="lang-option" data-lang="pt">Português</div>
+                    <div class="lang-option" data-lang="en">English</div>
+                    <div class="lang-option" data-lang="es">Español</div>
+                </div>
+            </div>
+        </div>
+    </div>
+   <!-- Preloader -->
+    <div id="preloader" style="position:fixed;top:0;left:0;width:100vw;height:100vh;z-index:9999;background:rgba(17,17,17,0.95);backdrop-filter:blur(20px);display:flex;align-items:center;justify-content:center;transition:all 0.8s ease-in-out;">
+        <div class="preloader-content" style="text-align:center;animation:preloader-fade-in 1s ease-in-out;">
+            <img src="img/logo_marcos_branco-.png" alt="Logo Preloader" style="width:280px;height:auto;filter:drop-shadow(0 0 25px #e11d48);animation:preloader-pulse 2s ease-in-out infinite;margin-bottom:20px;" />
+            <div id="preloader-text" style="color:#e11d48;font-size:24px;font-weight:bold;margin-top:20px;animation:preloader-text 1.5s ease-in-out infinite alternate;">
+                Carregando...
+            </div>
+            <div class="preloader-spinner" style="margin:20px auto;width:50px;height:50px;border:3px solid rgba(225,29,72,0.3);border-top:3px solid #e11d48;border-radius:50%;animation:preloader-spin 1s linear infinite;"></div>
+        </div>
+    </div>
+    <style>
+    @keyframes preloader-spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+    }
+    @keyframes preloader-pulse {
+        0% { transform: scale(1); filter: drop-shadow(0 0 25px #e11d48); }
+        50% { transform: scale(1.05); filter: drop-shadow(0 0 35px #e11d48); }
+        100% { transform: scale(1); filter: drop-shadow(0 0 25px #e11d48); }
+    }
+    @keyframes preloader-fade-in {
+        0% { opacity: 0; transform: translateY(30px); }
+        100% { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes preloader-text {
+        0% { opacity: 0.6; }
+        100% { opacity: 1; }
+    }
+    </style>
+    <!-- Header/Navigation -->
+    <header class="site-header fixed w-full z-50 bg-black bg-opacity-90 backdrop-blur-sm">
+        <div class="container mx-auto px-4 py-4">
+            <div class="site-header__bar flex justify-between items-center gap-6">
+                <div class="site-brand flex items-center">
+                    <div class="site-brand__logo-wrap">
+                        <img src="img/logo_marcos_branco-.png" alt="Logo Marcos Tattoo" style="height:50px;width:auto;margin-right:12px;" />
+                    </div>
+                    <div>
+                        <div class="text-rose-600 marker-font text-3xl">Marcos Tattoo</div>
+                        <p class="site-brand__tagline">Blackwork, geek e neotradicional com direção artística.</p>
+                    </div>
+                </div>
+                
+                <div class="site-nav hidden md:flex flex-wrap justify-end gap-6">
+                    <a href="#home" class="nav-link text-gray-300 hover:text-white" id="nav-home">Home</a>
+                    <a href="#about" class="nav-link text-gray-300 hover:text-white" id="nav-about">Sobre</a>
+                    <a href="#gallery" class="nav-link text-gray-300 hover:text-white" id="nav-gallery">Galeria</a>
+                    <a href="#services" class="nav-link text-gray-300 hover:text-white" id="nav-services">Serviços</a>
+                    <a href="#mentorship" class="nav-link text-gray-300 hover:text-white" id="nav-mentorship">Mentoria</a>
+                    <a href="#testimonials" class="nav-link text-gray-300 hover:text-white" id="nav-testimonials">Depoimentos</a>
+                    <a href="#events" class="nav-link text-gray-300 hover:text-white" id="nav-events">Eventos</a>
+                    <a href="#contact" class="nav-link text-gray-300 hover:text-white" id="nav-contact">Contato</a>
+                </div>
+
+                <button id="menu-toggle" class="md:hidden mobile-menu-toggle text-white" type="button" aria-label="Abrir menu" aria-expanded="false" aria-controls="mobile-menu">
+                    <span class="mobile-menu-toggle__line"></span>
+                    <span class="mobile-menu-toggle__line"></span>
+                    <span class="mobile-menu-toggle__line"></span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <div id="mobile-menu" class="mobile-menu md:hidden" aria-hidden="true">
+        <div class="mobile-menu__panel">
+            <div class="mobile-menu__header">
+                <span class="text-rose-600 marker-font text-2xl">Menu</span>
+                <button id="mobile-menu-close" class="mobile-menu__close" type="button" aria-label="Fechar menu">
+                    <i class="fa-solid fa-xmark"></i>
+                </button>
+            </div>
+            <nav class="mobile-menu__nav">
+                <a href="#home" class="mobile-menu__link" id="mobile-nav-home">Home</a>
+                <a href="#about" class="mobile-menu__link" id="mobile-nav-about">Sobre</a>
+                <a href="#gallery" class="mobile-menu__link" id="mobile-nav-gallery">Galeria</a>
+                <a href="#services" class="mobile-menu__link" id="mobile-nav-services">Serviços</a>
+                <a href="#mentorship" class="mobile-menu__link" id="mobile-nav-mentorship">Mentoria</a>
+                <a href="#testimonials" class="mobile-menu__link" id="mobile-nav-testimonials">Depoimentos</a>
+                <a href="#events" class="mobile-menu__link" id="mobile-nav-events">Eventos</a>
+                <a href="#contact" class="mobile-menu__link" id="mobile-nav-contact">Contato</a>
+            </nav>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-section relative h-screen flex items-center justify-center bg-black">
+        <div class="absolute inset-0 z-0">
+            <svg class="w-full h-full opacity-20" viewBox="0 0 100 100" preserveAspectRatio="none">
+                <path d="M0,0 L100,0 L100,100 L0,100 Z" fill="url(#hero-gradient)" />
+                <defs>
+                    <linearGradient id="hero-gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" stop-color="#b91c1c" />
+                        <stop offset="100%" stop-color="#6366f1" />
+                    </linearGradient>
+                </defs>
+            </svg>
+            
+            <!-- Abstract tattoo-like patterns -->
+            <svg class="absolute inset-0 w-full h-full opacity-10" viewBox="0 0 100 100" preserveAspectRatio="none">
+                <path d="M10,30 Q30,5 50,30 T90,30" stroke="#e11d48" stroke-width="0.5" fill="none" />
+                <path d="M10,50 Q30,25 50,50 T90,50" stroke="#e11d48" stroke-width="0.5" fill="none" />
+                <path d="M10,70 Q30,45 50,70 T90,70" stroke="#e11d48" stroke-width="0.5" fill="none" />
+                <circle cx="20" cy="20" r="5" fill="none" stroke="#e11d48" stroke-width="0.3" />
+                <circle cx="80" cy="80" r="8" fill="none" stroke="#e11d48" stroke-width="0.3" />
+                <circle cx="70" cy="20" r="3" fill="none" stroke="#e11d48" stroke-width="0.3" />
+            </svg>
+        </div>
+        
+    <div class="absolute inset-0 z-0 flex items-center justify-center hero-artwork">
+        <img src="img/Capa/nova.jpg" alt="Fundo" class="w-full h-full object-contain bg-transparent" style="pointer-events:none;background:transparent;" />
+    </div>
+    <div class="container mx-auto px-4 z-10">
+            <div class="hero-shell">
+                <div class="hero-copy text-center md:text-left">
+                    <span class="hero-eyebrow">Estúdio autoral em São Francisco do Sul</span>
+                    <h1 class="marker-font text-5xl md:text-7xl mb-6 text-white hero-title">
+                        Tatuagem com presença, conceito e assinatura.
+                    </h1>
+                    <p class="text-xl md:text-2xl mb-10 text-gray-300 max-w-3xl md:mx-0 mx-auto hero-description">
+                        <span id="hero-desc">Arte na pele com personalidade. Tatuagens exclusivas e mentoria para novos tatuadores.</span>
+                    </p>
+                    <div class="flex flex-col md:flex-row justify-center md:justify-start gap-4 hero-actions">
+                        <a href="#contact" class="btn-primary bg-rose-600 hover:bg-rose-700 text-white font-bold py-3 px-8 rounded-full hero-primary-cta">
+                        <span id="hero-btn1">Agendar Sessão</span>
+                        </a>
+                        <a href="#mentorship" class="border border-white text-white font-bold py-3 px-8 rounded-full hover:bg-white hover:text-black transition duration-300 hero-secondary-cta">
+                        <span id="hero-btn2">Conhecer Mentoria</span>
+                        </a>
+                    </div>
+                    <div class="hero-highlights">
+                        <div class="hero-highlight-card">
+                            <span class="hero-highlight-value">+10</span>
+                            <span class="hero-highlight-label">premiações em competições</span>
+                        </div>
+                        <div class="hero-highlight-card">
+                            <span class="hero-highlight-value">6 anos</span>
+                            <span class="hero-highlight-label">de experiência profissional</span>
+                        </div>
+                        <div class="hero-highlight-card">
+                            <span class="hero-highlight-value">1:1</span>
+                            <span class="hero-highlight-label">mentoria prática e direcionada</span>
+                        </div>
+                    </div>
+                </div>
+
+                <aside class="hero-feature-panel" aria-label="Destaques do estúdio">
+                    <div class="hero-feature-panel__inner">
+                        <p class="hero-feature-panel__kicker">Experiência do estúdio</p>
+                        <h2 class="hero-feature-panel__title">Processo mais claro, visual mais forte e decisão mais fácil.</h2>
+                        <ul class="hero-feature-list">
+                            <li><i class="fa-solid fa-check"></i> Atendimento com briefing e direção visual.</li>
+                            <li><i class="fa-solid fa-check"></i> Estilos com foco em identidade e composição.</li>
+                            <li><i class="fa-solid fa-check"></i> Mentoria para evolução técnica e posicionamento.</li>
+                        </ul>
+                        <div class="hero-feature-badge-row">
+                            <span class="hero-feature-badge">Atendimento autoral</span>
+                            <span class="hero-feature-badge">Biossegurança</span>
+                            <span class="hero-feature-badge">Projeto exclusivo</span>
+                        </div>
+                    </div>
+                </aside>
+            </div>
+            <div class="hero-trust-bar">
+                <span>Blackwork</span>
+                <span>Geek</span>
+                <span>Neotradicional</span>
+                <span>Projetos personalizados</span>
+                <span>Mentoria profissional</span>
+                <span>Piercing com biossegurança</span>
+                </div>
+            </div>
+        </div>
+        
+        <div class="absolute bottom-10 left-1/2 transform -translate-x-1/2 scroll-indicator">
+            <a href="#about" class="text-white">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+                </svg>
+            </a>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-zinc-900">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row items-center gap-12">
+                <div class="md:w-1/2">
+                    <div class="w-full flex justify-center items-center">
+                        <div class="about-media-frame">
+                            <video controls playsinline preload="metadata" poster="img/Capa/Sobre Mim.png" class="rounded-lg shadow-2xl" style="width:90%;max-width:400px;height:auto;margin:auto;display:block;">
+                            <source src="videos/1.mp4" type="video/mp4" >
+                            Seu navegador não suporta vídeo.
+                        </video>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="md:w-1/2">
+                          <span class="section-kicker">Trajetória e visão artística</span>
+                          <h2 class="marker-font text-4xl mb-6 text-white" id="about-title">Sobre <span class="text-rose-600">Marcos</span></h2>
+                          <p class="text-gray-300 mb-6 about-lead" id="about-desc">
+                              Sou tatuador há<strong> 6 anos</strong> e comecei minha trajetória na arte da tatuagem aos 16 anos. Antes disso, mergulhei no universo do grafite e das artes plásticas, participando inclusive de exposições e fomentando a cultura das artes plásticas na região de São Francisco do Sul/SC.
+                                Essa trajetória foi fundamental para desenvolver meu estilo e meu domínio no desenho. Hoje, levo toda essa bagagem para as tatuagens, sempre buscando criar algo único e significativo para meus clientes.
+                                Criativo por natureza, sempre procuro pensar fora da caixa, trazendo soluções inovadoras para cada projeto. Hoje já somo mais de 10 premiações em competições de tatuagem, principalmente nos estilos onde venho me especializando: Blackwork, Geek e Neotradicional.
+                                Além disso, a cultura hip hop faz parte de quem eu sou - o rap é mais que som, é a inspiração de vida. Minha arte reflete essa essência: Autêntica, Urbana e cheia de personalidade.</p>
+                          <div class="about-quote-card">
+                              <p>"Cada projeto precisa vestir a pele da pessoa com intenção, não apenas preencher espaço."</p>
+                          </div>
+                    </div>
+                </div>
+                <div class="about-metrics flex flex-wrap gap-4 justify-center">
+                    <div class="bg-zinc-800 p-4 rounded-lg flex items-center about-metric-card">
+                        <div class="text-rose-600 text-2xl mr-3">
+                            <i class="fas fa-award"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-white">Premiado</h3>
+                                <p class="text-sm text-gray-400" id="about-premiado-desc">Reconhecido internacionalmente</p>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-zinc-800 p-4 rounded-lg flex items-center about-metric-card">
+                            <div class="text-rose-600 text-2xl mr-3">
+                                <i class="fas fa-shield-alt"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-white">Certificado</h3>
+                                <p class="text-sm text-gray-400" id="about-certificado-desc">Biossegurança garantida</p>
+                            </div>
+                        </div>
+                        
+                        <div class="bg-zinc-800 p-4 rounded-lg flex items-center about-metric-card">
+                            <div class="text-rose-600 text-2xl mr-3">
+                                <i class="fas fa-user-graduate"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-bold text-white">Mentor</h3>
+                                <p class="text-sm text-gray-400" id="about-mentor-desc">Formação de tatuadores</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Gallery Section -->
+    <section id="gallery" class="py-20 bg-black">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16">
+                <h2 class="marker-font text-4xl mb-6 text-white" id="gallery-title">Nossa <span class="text-rose-600">Galeria</span></h2>
+                <p class="text-gray-300 max-w-2xl mx-auto" id="gallery-desc">
+                    Conheça alguns dos trabalhos mais recentes de Marcos. Cada tatuagem conta uma história única e é criada com dedicação e técnica apurada.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
+                <!-- Gallery Items 01.jpg to 40.jpg -->
+                <!-- Imagens reais, sem legenda -->
+                <!-- ...existing code... -->
+                <!-- Gerado automaticamente -->
+                <!-- ...existing code... -->
+                <!-- Todas as 40 imagens, só as 9 primeiras visíveis -->
+                <!-- ...existing code... -->
+                <!-- Gerado automaticamente -->
+                <!-- ...existing code... -->
+                <!-- Imagens 1 a 9 visíveis -->
+                <div class="gallery-item">
+    <div class="bg-zinc-800 h-80 rounded-lg overflow-hidden flex items-center justify-center">
+        <img src="img/01.jpg" alt="Tatuagem 01" class="gallery-img object-cover w-full h-full transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-2xl" />
+    </div>
+                </div>
+                <div class="gallery-item">
+    <div class="bg-zinc-800 h-80 rounded-lg overflow-hidden flex items-center justify-center">
+        <img src="img/03.jpg" alt="Tatuagem 03" class="gallery-img object-cover w-full h-full transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-2xl" />
+    </div>
+                </div>
+                <div class="gallery-item">
+    <div class="bg-zinc-800 h-80 rounded-lg overflow-hidden flex items-center justify-center">
+        <img src="img/04.jpg" alt="Tatuagem 04" class="gallery-img object-cover w-full h-full transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-2xl" />
+    </div>
+                </div>
+                <div class="gallery-item">
+    <div class="bg-zinc-800 h-80 rounded-lg overflow-hidden flex items-center justify-center">
+        <img src="img/05.jpg" alt="Tatuagem 05" class="gallery-img object-cover w-full h-full transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-2xl" />
+    </div>
+                </div>
+                <div class="gallery-item">
+    <div class="bg-zinc-800 h-80 rounded-lg overflow-hidden flex items-center justify-center">
+        <img src="img/06.jpg" alt="Tatuagem 06" class="gallery-img object-cover w-full h-full transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-2xl" />
+    </div>
+                </div>
+                <div class="gallery-item">
+    <div class="bg-zinc-800 h-80 rounded-lg overflow-hidden flex items-center justify-center">
+        <img src="img/07.jpg" alt="Tatuagem 07" class="gallery-img object-cover w-full h-full transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-2xl" />
+    </div>
+                </div>
+                <div class="gallery-item">
+    <div class="bg-zinc-800 h-80 rounded-lg overflow-hidden flex items-center justify-center">
+        <img src="img/08.jpg" alt="Tatuagem 08" class="gallery-img object-cover w-full h-full transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-2xl" />
+    </div>
+                </div>
+                <div class="gallery-item">
+    <div class="bg-zinc-800 h-80 rounded-lg overflow-hidden flex items-center justify-center">
+        <img src="img/09.jpg" alt="Tatuagem 09" class="gallery-img object-cover w-full h-full transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-2xl" />
+    </div>
+                </div>
+                <!-- Imagens 10 a 40 ocultas -->
+                <div class="gallery-item hidden" id="extra-img-10">
+                    <div class="bg-zinc-800 h-80 rounded-lg overflow-hidden flex items-center justify-center">
+                        <img src="img/10.jpg" alt="Tatuagem 10" class="gallery-img object-cover w-full h-full transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-2xl" />
+                    </div>
+                </div>
+                <div class="gallery-item hidden" id="extra-img-11">
+                    <div class="bg-zinc-800 h-80 rounded-lg overflow-hidden flex items-center justify-center">
+                        <img src="img/11.jpg" alt="Tatuagem 11" class="gallery-img object-cover w-full h-full transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-2xl" />
+                    </div>
+                </div>
+                <div class="gallery-item hidden" id="extra-img-12">
+                    <div class="bg-zinc-800 h-80 rounded-lg overflow-hidden flex items-center justify-center">
+                        <img src="img/12.jpg" alt="Tatuagem 12" class="gallery-img object-cover w-full h-full transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-2xl" />
+                    </div>
+                </div>
+                <div class="gallery-item hidden" id="extra-img-13">
+                    <div class="bg-zinc-800 h-80 rounded-lg overflow-hidden flex items-center justify-center">
+                        <img src="img/13.jpg" alt="Tatuagem 13" class="gallery-img object-cover w-full h-full transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-2xl" />
+                    </div>
+                </div>
+                <div class="gallery-item hidden" id="extra-img-14">
+                    <div class="bg-zinc-800 h-80 rounded-lg overflow-hidden flex items-center justify-center">
+                        <img src="img/14.jpg" alt="Tatuagem 14" class="gallery-img object-cover w-full h-full transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-2xl" />
+                    </div>
+                </div>
+                <div class="gallery-item hidden" id="extra-img-15">
+                    <div class="bg-zinc-800 h-80 rounded-lg overflow-hidden flex items-center justify-center">
+                        <img src="img/15.jpg" alt="Tatuagem 15" class="gallery-img object-cover w-full h-full transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-2xl" />
+                    </div>
+                </div>
+                <div class="gallery-item hidden" id="extra-img-16">
+                    <div class="bg-zinc-800 h-80 rounded-lg overflow-hidden flex items-center justify-center">
+                        <img src="img/16.jpg" alt="Tatuagem 16" class="gallery-img object-cover w-full h-full transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-2xl" />
+                    </div>
+                </div>
+                <div class="gallery-item hidden" id="extra-img-17">
+                    <div class="bg-zinc-800 h-80 rounded-lg overflow-hidden flex items-center justify-center">
+                        <img src="img/17.jpg" alt="Tatuagem 17" class="gallery-img object-cover w-full h-full transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-2xl" />
+                    </div>
+                </div>
+                <div class="gallery-item hidden" id="extra-img-18">
+                    <div class="bg-zinc-800 h-80 rounded-lg overflow-hidden flex items-center justify-center">
+                        <img src="img/18.jpg" alt="Tatuagem 18" class="gallery-img object-cover w-full h-full transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-2xl" />
+                    </div>
+                </div>
+                <div class="gallery-item hidden" id="extra-img-19">
+                    <div class="bg-zinc-800 h-80 rounded-lg overflow-hidden flex items-center justify-center">
+                        <img src="img/19.jpg" alt="Tatuagem 19" class="gallery-img object-cover w-full h-full transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-2xl" />
+                    </div>
+                </div>
+                <div class="gallery-item hidden" id="extra-img-20">
+                    <div class="bg-zinc-800 h-80 rounded-lg overflow-hidden flex items-center justify-center">
+                        <img src="img/20.jpg" alt="Tatuagem 20" class="gallery-img object-cover w-full h-full transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-2xl" />
+                    </div>
+                </div>
+                <div class="gallery-item hidden" id="extra-img-21">
+                    <div class="bg-zinc-800 h-80 rounded-lg overflow-hidden flex items-center justify-center">
+                        <img src="img/21.jpg" alt="Tatuagem 21" class="gallery-img object-cover w-full h-full transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-2xl" />
+                    </div>
+                </div>
+                <div class="gallery-item hidden" id="extra-img-22">
+                    <div class="bg-zinc-800 h-80 rounded-lg overflow-hidden flex items-center justify-center">
+                        <img src="img/22.jpg" alt="Tatuagem 22" class="gallery-img object-cover w-full h-full transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-2xl" />
+                    </div>
+                </div>
+                <div class="gallery-item hidden" id="extra-img-23">
+                    <div class="bg-zinc-800 h-80 rounded-lg overflow-hidden flex items-center justify-center">
+                        <img src="img/23.jpg" alt="Tatuagem 23" class="gallery-img object-cover w-full h-full transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-2xl" />
+                    </div>
+                </div>
+                <div class="gallery-item hidden" id="extra-img-24">
+                    <div class="bg-zinc-800 h-80 rounded-lg overflow-hidden flex items-center justify-center">
+                        <img src="img/24.jpg" alt="Tatuagem 24" class="gallery-img object-cover w-full h-full transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-2xl" />
+                    </div>
+                </div>
+                <div class="gallery-item hidden" id="extra-img-25">
+                    <div class="bg-zinc-800 h-80 rounded-lg overflow-hidden flex items-center justify-center">
+                        <img src="img/25.jpg" alt="Tatuagem 25" class="gallery-img object-cover w-full h-full transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-2xl" />
+                    </div>
+                </div>
+                <div class="gallery-item hidden" id="extra-img-26">
+                    <div class="bg-zinc-800 h-80 rounded-lg overflow-hidden flex items-center justify-center">
+                        <img src="img/26.jpg" alt="Tatuagem 26" class="gallery-img object-cover w-full h-full transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-2xl" />
+                    </div>
+                </div>
+                <div class="gallery-item hidden" id="extra-img-27">
+                    <div class="bg-zinc-800 h-80 rounded-lg overflow-hidden flex items-center justify-center">
+                        <img src="img/27.jpg" alt="Tatuagem 27" class="gallery-img object-cover w-full h-full transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-2xl" />
+                    </div>
+                </div>
+                <div class="gallery-item hidden" id="extra-img-28">
+                    <div class="bg-zinc-800 h-80 rounded-lg overflow-hidden flex items-center justify-center">
+                        <img src="img/28.jpg" alt="Tatuagem 28" class="gallery-img object-cover w-full h-full transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-2xl" />
+                    </div>
+                </div>
+                <div class="gallery-item hidden" id="extra-img-29">
+                    <div class="bg-zinc-800 h-80 rounded-lg overflow-hidden flex items-center justify-center">
+                        <img src="img/29.jpg" alt="Tatuagem 29" class="gallery-img object-cover w-full h-full transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-2xl" />
+                    </div>
+                </div>
+                <div class="gallery-item hidden" id="extra-img-30">
+                    <div class="bg-zinc-800 h-80 rounded-lg overflow-hidden flex items-center justify-center">
+                        <img src="img/30.jpg" alt="Tatuagem 30" class="gallery-img object-cover w-full h-full transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-2xl" />
+                    </div>
+                </div>
+                <div class="gallery-item hidden" id="extra-img-31">
+                    <div class="bg-zinc-800 h-80 rounded-lg overflow-hidden flex items-center justify-center">
+                        <img src="img/31.jpg" alt="Tatuagem 31" class="gallery-img object-cover w-full h-full transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-2xl" />
+                    </div>
+                </div>
+                <div class="gallery-item hidden" id="extra-img-32">
+                    <div class="bg-zinc-800 h-80 rounded-lg overflow-hidden flex items-center justify-center">
+                        <img src="img/32.jpg" alt="Tatuagem 32" class="gallery-img object-cover w-full h-full transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-2xl" />
+                    </div>
+                </div>
+                <div class="gallery-item hidden" id="extra-img-33">
+                    <div class="bg-zinc-800 h-80 rounded-lg overflow-hidden flex items-center justify-center">
+                        <img src="img/33.jpg" alt="Tatuagem 33" class="gallery-img object-cover w-full h-full transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-2xl" />
+                    </div>
+                </div>
+                <div class="gallery-item hidden" id="extra-img-34">
+                    <div class="bg-zinc-800 h-80 rounded-lg overflow-hidden flex items-center justify-center">
+                        <img src="img/34.jpg" alt="Tatuagem 34" class="gallery-img object-cover w-full h-full transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-2xl" />
+                    </div>
+                </div>
+                <div class="gallery-item hidden" id="extra-img-35">
+                    <div class="bg-zinc-800 h-80 rounded-lg overflow-hidden flex items-center justify-center">
+                        <img src="img/35.jpg" alt="Tatuagem 35" class="gallery-img object-cover w-full h-full transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-2xl" />
+                    </div>
+                </div>
+                <div class="gallery-item hidden" id="extra-img-38">
+                    <div class="bg-zinc-800 h-80 rounded-lg overflow-hidden flex items-center justify-center">
+                        <img src="img/38.jpg" alt="Tatuagem 38" class="gallery-img object-cover w-full h-full transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-2xl" />
+                    </div>
+                </div>
+                <!-- ...existing code... -->
+                <div class="gallery-item hidden" id="extra-img-40">
+                    <div class="bg-zinc-800 h-80 rounded-lg overflow-hidden flex items-center justify-center">
+                        <img src="img/40.jpg" alt="Tatuagem 40" class="gallery-img object-cover w-full h-full transition-transform duration-300 ease-in-out hover:scale-105 hover:shadow-2xl" />
+                    </div>
+                </div>
+            </div>
+            
+            <div class="text-center mt-12">
+                <button id="view-more-btn" class="border border-rose-600 text-rose-600 hover:bg-rose-600 hover:text-white transition duration-300 font-bold py-3 px-8 rounded-full">
+                    Ver Mais Trabalhos
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section id="services" class="py-20 bg-zinc-900">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16 section-heading-shell">
+                <span class="section-kicker">Soluções criativas para cada projeto</span>
+                <h2 class="marker-font text-4xl mb-6 text-white">Nossos <span class="text-rose-600">Serviços</span></h2>
+                <p class="text-gray-300 max-w-2xl mx-auto" id="services-desc">
+                    Oferecemos uma variedade de estilos e serviços para atender às suas necessidades. Cada trabalho é personalizado e executado com o máximo de cuidado e profissionalismo.
+                </p>
+            </div>
+
+            <div class="services-showcase">
+                <div class="services-intro-card">
+                    <p class="services-intro-card__eyebrow">Como funciona</p>
+                    <h3 class="services-intro-card__title">Da ideia ao desenho final com mais clareza e direção.</h3>
+                    <p class="services-intro-card__text">Cada atendimento parte de conversa, leitura de referência, composição e execução com foco em identidade visual, encaixe no corpo e resultado duradouro.</p>
+                    <div class="services-intro-card__metrics">
+                        <div>
+                            <strong>Briefing</strong>
+                            <span>Entendimento do conceito e estilo</span>
+                        </div>
+                        <div>
+                            <strong>Projeto</strong>
+                            <span>Composição pensada para a anatomia</span>
+                        </div>
+                        <div>
+                            <strong>Execução</strong>
+                            <span>Técnica, acabamento e cuidado</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 services-grid">
+                <!-- Service 1 -->
+                <div class="service-card bg-zinc-800 rounded-lg p-6 hover:bg-zinc-700 transition duration-300 transform hover:-translate-y-2">
+                    <div class="service-card__icon text-rose-600 text-4xl mb-4">
+                        <i class="fas fa-pen-nib"></i>
+                    </div>
+                    <span class="service-card__pill">Autoral</span>
+                    <h3 class="text-xl font-bold text-white mb-3">Tatuagens Personalizadas</h3>
+                    <p class="text-gray-300 mb-4">
+                        Designs exclusivos criados especialmente para você, respeitando suas ideias e estilo pessoal.
+                    </p>
+                    <ul class="text-gray-400 space-y-2">
+                        <li class="flex items-center">
+                            <svg class="w-4 h-4 mr-2 text-rose-600" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                            Consulta de design
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-4 h-4 mr-2 text-rose-600" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                            Esboços preliminares
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-4 h-4 mr-2 text-rose-600" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                            Sessão de tatuagem
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="service-card bg-zinc-800 rounded-lg p-6 hover:bg-zinc-700 transition duration-300 transform hover:-translate-y-2">
+                    <div class="service-card__icon text-rose-600 text-4xl mb-4">
+                        <i class="fas fa-sync-alt"></i>
+                    </div>
+                    <span class="service-card__pill">Transformação</span>
+                    <h3 class="text-xl font-bold text-white mb-3">Cobertura e Restauração</h3>
+                    <p class="text-gray-300 mb-4">
+                        Transformamos tatuagens antigas ou indesejadas em novas obras de arte que você vai adorar.
+                    </p>
+                    <ul class="text-gray-400 space-y-2">
+                        <li class="flex items-center">
+                            <svg class="w-4 h-4 mr-2 text-rose-600" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                            Avaliação da tatuagem existente
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-4 h-4 mr-2 text-rose-600" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                            Opções de cobertura
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-4 h-4 mr-2 text-rose-600" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                            Restauração de cores
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Service 3 -->
+                <div class="service-card bg-zinc-800 rounded-lg p-6 hover:bg-zinc-700 transition duration-300 transform hover:-translate-y-2">
+                    <div class="service-card__icon text-rose-600 text-4xl mb-4">
+                        <i class="fas fa-paint-brush"></i>
+                    </div>
+                    <span class="service-card__pill">Especialidade</span>
+                    <h3 class="text-xl font-bold text-white mb-3">Estilos Especializados</h3>
+                    <p class="text-gray-300 mb-4">
+                        Dominamos diversos estilos de tatuagem, desde o tradicional até as técnicas mais modernas.
+                    </p>
+                    <ul class="text-gray-400 space-y-2">
+                        <li class="flex items-center">
+                            <svg class="w-4 h-4 mr-2 text-rose-600" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                            Realismo e Hiper-realismo
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-4 h-4 mr-2 text-rose-600" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                            Aquarela e Abstrato
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-4 h-4 mr-2 text-rose-600" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                            Blackwork e Geométrico
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Service 4 -->
+                <div class="service-card bg-zinc-800 rounded-lg p-6 hover:bg-zinc-700 transition duration-300 transform hover:-translate-y-2">
+                    <div class="service-card__icon text-rose-600 text-4xl mb-4">
+                        <i class="fas fa-user-friends"></i>
+                    </div>
+                    <span class="service-card__pill">Direção criativa</span>
+                    <h3 class="text-xl font-bold text-white mb-3">Consultoria de Design</h3>
+                    <p class="text-gray-300 mb-4">
+                        Ajudamos a transformar suas ideias em designs incríveis que combinam com seu estilo e personalidade.
+                    </p>
+                    <ul class="text-gray-400 space-y-2">
+                        <li class="flex items-center">
+                            <svg class="w-4 h-4 mr-2 text-rose-600" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                            Sessão de brainstorming
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-4 h-4 mr-2 text-rose-600" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                            Pesquisa de referências
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-4 h-4 mr-2 text-rose-600" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                            Criação de conceitos
+                        </li>
+                    </ul>
+                </div>  
+                <!-- Service 5 -->
+                <div class="service-card bg-zinc-800 rounded-lg p-6 hover:bg-zinc-700 transition duration-300 transform hover:-translate-y-2">
+                    <div class="service-card__icon text-rose-600 text-4xl mb-4">
+                        <i class="fas fa-gem"></i>
+                    </div>
+                    <span class="service-card__pill">Escala</span>
+                    <h3 class="text-xl font-bold text-white mb-3">Projetos Especiais</h3>
+                    <p class="text-gray-300 mb-4">
+                        Tatuagens de grande escala como sleeves completas, costas inteiras e projetos corporais extensos.
+                    </p>
+                    <ul class="text-gray-400 space-y-2">
+                        <li class="flex items-center">
+                            <svg class="w-4 h-4 mr-2 text-rose-600" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                            Planejamento completo
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-4 h-4 mr-2 text-rose-600" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                            Múltiplas sessões
+                        </li>
+                        <li class="flex items-center">
+                            <svg class="w-4 h-4 mr-2 text-rose-600" fill="currentColor" viewBox="0 0 20 20">
+                                <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd"></path>
+                            </svg>
+                            Preços personalizados
+                        </li>
+                    </ul>
+                </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Piercing Section -->
+    <section id="piercing" class="py-20 bg-black">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16 section-heading-shell">
+                <span class="section-kicker">Talita Body Art</span>
+                <h2 class="marker-font text-4xl mb-6 text-white">Serviços de <span class="text-rose-600">Piercing</span></h2>
+                <div class="flex justify-center mb-4">
+                    <div class="piercing-logo-stage">
+                        <img src="img/talita/logo.png" alt="Logo Marcos Tattoo" style="height:360px;width:auto;filter:drop-shadow(0 0 12px #e11d48);" />
+                    </div>
+                </div>
+                <p class="text-gray-300 max-w-2xl mx-auto" id="piercing-desc">
+                    Além das tatuagens, oferecemos aplicação de piercings com total segurança, higiene e profissionalismo. Utilizamos materiais de alta qualidade e seguimos rigorosos protocolos de biossegurança para garantir seu conforto e bem-estar.
+                </p>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 piercing-services-grid">
+                <div class="piercing-card bg-zinc-800 rounded-lg p-6 flex flex-col items-center hover:bg-zinc-700 transition duration-300 transform hover:-translate-y-2">
+                    <div class="text-rose-600 text-4xl mb-4">
+                        <i class="fas fa-ring"></i>
+                    </div>
+                    <span class="service-card__pill">Facial</span>
+                    <h3 class="text-xl font-bold text-white mb-3">Piercings Faciais</h3>
+                    <p class="text-gray-300 mb-4 text-center">Aplicação de piercings em nariz, sobrancelha, lábio, septo e outros locais faciais, com técnica precisa e materiais esterilizados.</p>
+                </div>
+                <div class="piercing-card bg-zinc-800 rounded-lg p-6 flex flex-col items-center hover:bg-zinc-700 transition duration-300 transform hover:-translate-y-2">
+                    <div class="text-rose-600 text-4xl mb-4">
+                        <i class="fas fa-circle"></i>
+                    </div>
+                    <span class="service-card__pill">Corporal</span>
+                    <h3 class="text-xl font-bold text-white mb-3">Piercings Corporais</h3>
+                    <p class="text-gray-300 mb-4 text-center">Umbigo, mamilo, orelha (tragus, helix, lóbulo) e outros. Atendimento personalizado para cada tipo de piercing.</p>
+                </div>
+                <div class="piercing-card bg-zinc-800 rounded-lg p-6 flex flex-col items-center hover:bg-zinc-700 transition duration-300 transform hover:-translate-y-2">
+                    <div class="text-rose-600 text-4xl mb-4">
+                        <i class="fas fa-shield-virus"></i>
+                    </div>
+                    <span class="service-card__pill">Segurança</span>
+                    <h3 class="text-xl font-bold text-white mb-3">Biossegurança</h3>
+                    <p class="text-gray-300 mb-4 text-center">Ambiente esterilizado, uso de materiais descartáveis e acompanhamento das melhores práticas para sua segurança.</p>
+                </div>
+            </div>
+            <!-- Galeria de Piercings -->
+            <div class="mt-16">
+                <div class="flex justify-center mb-4">
+                </div>
+                <h3 class="text-2xl font-bold text-white mb-8 text-center" id="piercing-gallery-title">Galeria de Piercings</h3>
+                <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 justify-center piercing-gallery-grid">
+                    <div class="piercing-gallery-card bg-zinc-800 rounded-lg overflow-hidden flex items-center justify-center">
+                        <img src="img/talita/0C0E1D77-C0E7-4495-9821-B181D34046BB.jpeg" alt="Piercing 1" class="object-cover w-full h-64 piercing-img" data-img="img/talita/0C0E1D77-C0E7-4495-9821-B181D34046BB.jpeg" />
+                    </div>
+                    <div class="piercing-gallery-card bg-zinc-800 rounded-lg overflow-hidden flex items-center justify-center">
+                        <img src="img/talita/1F95F3AB-5D9D-417E-8730-C393F0137960.JPEG" alt="Piercing 2" class="object-cover w-full h-64 piercing-img" data-img="img/talita/1F95F3AB-5D9D-417E-8730-C393F0137960.JPEG" />
+                    </div>
+                    <div class="piercing-gallery-card bg-zinc-800 rounded-lg overflow-hidden flex items-center justify-center">
+                        <img src="img/talita/5F1C5892-467D-4767-A402-9B0B9A6D9F81.JPEG" alt="Piercing 3" class="object-cover w-full h-64 piercing-img" data-img="img/talita/5F1C5892-467D-4767-A402-9B0B9A6D9F81.JPEG" />
+                    </div>
+                    <div class="piercing-gallery-card bg-zinc-800 rounded-lg overflow-hidden flex items-center justify-center">
+                        <img src="img/talita/8064ECEA-C75D-4649-9435-49258A4FBE17.JPG" alt="Piercing 4" class="object-cover w-full h-64 piercing-img" data-img="img/talita/8064ECEA-C75D-4649-9435-49258A4FBE17.JPG" />
+                    </div>
+                    <div class="piercing-gallery-card bg-zinc-800 rounded-lg overflow-hidden flex items-center justify-center">
+                        <img src="img/talita/BF83B003-94C0-4C9D-ADC2-BB124DE2D3B9.JPEG" alt="Piercing 5" class="object-cover w-full h-64 piercing-img" data-img="img/talita/BF83B003-94C0-4C9D-ADC2-BB124DE2D3B9.JPEG" />
+                    </div>
+                    <div class="piercing-gallery-card bg-zinc-800 rounded-lg overflow-hidden flex items-center justify-center">
+                        <img src="img/talita/E3AC87C8-6E44-4E99-A246-CE77C4ECB0C3.JPEG" alt="Piercing 6" class="object-cover w-full h-64 piercing-img" data-img="img/talita/E3AC87C8-6E44-4E99-A246-CE77C4ECB0C3.JPEG" />
+                    </div>
+                    <div class="piercing-gallery-card bg-zinc-800 rounded-lg overflow-hidden flex items-center justify-center">
+                        <img src="img/talita/grdr 2025-07-18 230059.231.JPG" alt="Piercing 7" class="object-cover w-full h-64 piercing-img" data-img="img/talita/grdr 2025-07-18 230059.231.JPG" />
+                    </div>
+                    <div class="piercing-gallery-card bg-zinc-800 rounded-lg overflow-hidden flex items-center justify-center">
+                        <img src="img/talita/BF83B003-94C0-4C9D-ADC2-BB124DE2D3B9.JPEG" alt="Piercing 8" class="object-cover w-full h-64 piercing-img" data-img="img/talita/BF83B003-94C0-4C9D-ADC2-BB124DE2D3B9.JPEG" />
+                    </div>
+                    <div class="piercing-gallery-card bg-zinc-800 rounded-lg overflow-hidden flex items-center justify-center">
+                        <img src="img/talita/BF83B003-94C0-4C9D-ADC2-BB124DE2D3B9.JPEG" alt="Piercing 9" class="object-cover w-full h-64 piercing-img" data-img="img/talita/BF83B003-94C0-4C9D-ADC2-BB124DE2D3B9.JPEG" />
+                    </div>
+                </div>
+            </div>
+            <div class="text-center mt-12">
+                <a href="https://wa.me/5547991386869?text=Olá!%20Gostaria%20de%20agendar%20um%20piercing." target="_blank" rel="noopener" class="btn-primary bg-rose-600 hover:bg-rose-700 text-white font-bold py-3 px-8 rounded-full inline-block mb-4">
+                    <span id="piercing-btn">Agendar Piercing</span>
+                </a>
+                <br />
+                <a href="https://www.instagram.com/talitabodyart?igsh=MWRzZmdkaXZmbzYyMw==" target="_blank" rel="noopener" class="border border-pink-500 text-pink-500 hover:bg-pink-500 hover:text-white transition duration-300 font-bold py-3 px-8 rounded-full inline-block">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="inline-block mr-2" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect><path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path><line x1="17.5" y1="6.5" x2="17.5" y2="6.5"></line></svg>
+                    <span id="piercing-insta">Instagram Talita Body Art</span>
+                </a>
+            </div>
+        </div>
+    </section>
+    <!-- Mentorship Section -->
+    <section id="mentorship" class="py-20 bg-black">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16 section-heading-shell">
+                <span class="section-kicker">Formação com acompanhamento real</span>
+                <h2 class="marker-font text-4xl mb-6 text-white">Programa de <span class="text-rose-600">Mentoria</span></h2>
+                <p class="text-gray-300 max-w-2xl mx-auto" id="mentorship-desc">
+                    Aprenda com um dos melhores tatuadores do mercado. Marcos compartilha seu conhecimento e experiência para formar a próxima geração de artistas.
+                </p>
+            </div>
+            
+            <div class="flex flex-col lg:flex-row gap-12 items-center mb-16 mentorship-showcase">
+                <div class="lg:w-1/2 flex items-center justify-center">
+                    <div class="relative w-full max-w-xl h-80 bg-zinc-800 rounded-lg overflow-hidden flex items-center justify-center mentorship-image-stage">
+                        <img src="img/Mentoria/pilares.jpg" alt="Mentoria Marcos Tattoo" class="object-contain w-full h-full rounded-lg" />
+                        <div class="absolute -bottom-6 -left-6 w-32 h-32 bg-rose-600 rounded-lg -z-10"></div>
+                    </div>
+                </div>
+                
+                <div class="lg:w-1/2 mentorship-copy">
+                    <div class="mentorship-overview-card">
+                    <h3 class="text-2xl font-bold text-white mb-4">Por que escolher nossa mentoria?</h3>
+                    <p class="text-gray-300 mb-6">
+                        Com 06 anos de experiência, Marcos desenvolveu um método único de ensino que combina teoria e prática, permitindo que você desenvolva suas habilidades de forma acelerada e segura.
+                    </p>
+                    
+                    <div class="space-y-4 mb-8 mentorship-points">
+                        <div class="flex items-start mentorship-point">
+                            <div class="text-rose-600 text-xl mr-4 mt-1">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-bold">Aprendizado Personalizado</h4>
+                                <p class="text-gray-400">Programa adaptado ao seu nível de habilidade e objetivos profissionais.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start mentorship-point">
+                            <div class="text-rose-600 text-xl mr-4 mt-1">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-bold">Prática Supervisionada</h4>
+                                <p class="text-gray-400">Sessões práticas com feedback em tempo real para aprimorar sua técnica.</p>
+                            </div>
+                        </div>
+                        
+                        <div class="flex items-start mentorship-point">
+                            <div class="text-rose-600 text-xl mr-4 mt-1">
+                                <i class="fas fa-check-circle"></i>
+                            </div>
+                            <div>
+                                <h4 class="text-white font-bold">11 Módulos</h4>
+                                <p class="text-gray-400">Mentoria completa dividida  em 11 módulos exclusivos, cobrindo todos os temas essenciais para tatuadores iniciantes e avançados.</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <a href="#contact" class="btn-primary bg-rose-600 hover:bg-rose-700 text-white font-bold py-3 px-8 rounded-full inline-block">
+                        <span id="mentorship-btn">Quero ser Mentorado</span>
+                    </a>
+                    </div>
+                </div>
+            </div>
+            
+    </section>
+    <!-- Testimonials Section -->
+    <section id="testimonials" class="py-20 bg-black">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16 section-heading-shell">
+                <span class="section-kicker">Prova social</span>
+                <h2 class="marker-font text-4xl mb-6 text-white">O que nossos <span class="text-rose-600">Clientes</span> dizem</h2>
+                <p class="text-gray-300 max-w-2xl mx-auto" id="testimonials-desc">
+                    A satisfação dos nossos clientes e alunos é nossa maior recompensa. Confira alguns depoimentos de pessoas que confiaram em nosso trabalho.
+                </p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 testimonials-grid">
+                <!-- Testimonial 1 -->
+                <div class="testimonial-card bg-zinc-800 rounded-lg p-6 relative flex flex-col items-center justify-center text-center premium-testimonial-card">
+                    <div class="absolute top-4 left-4 text-4xl text-rose-600 opacity-20">
+                        <i class="fas fa-quote-left"></i>
+                    </div>
+                    <div class="relative z-10">
+                        <p class="text-gray-300 mb-6">
+                            "Minha jornada na tatuagem começou no dia 28 de janeiro, com a primeira aula da mentoria do Marcos — e em menos de dez dias, no dia 6 de fevereiro, eu já estava fazendo minha primeira tattoo na pele. Desde o início, o Marcos foi um apoio fundamental. Ele não só forneceu os materiais e direcionamentos certos (como o e-book sobre os pilares da tattoo, feito por ele mesmo), mas também esteve presente em cada passo do meu processo.
+                            Nas minhas primeiras tatuagens, ele me acompanhava de perto. E mesmo quando comecei a caminhar sozinha, ele continuou presente, sempre disponível pelo celular para tirar dúvidas e me dar suporte. Hoje, já são quase 7 meses de mentoria, e sigo tendo o acompanhamento dele — inclusive com aulas que vão além da tatuagem, como fundamentos do desenho.
+                            Atualmente, já tenho meu próprio perfil, estúdio e clientes. E sei que tudo isso foi possível graças à base que construí na mentoria com o Marcos.
+                        </p>
+                        <div class="flex items-center justify-center">
+                            <div class="w-12 h-12 bg-zinc-700 rounded-full flex items-center justify-center text-xl">
+                                🧔
+                            </div>
+                            <div class="ml-4 text-left">
+                                <h4 class="text-white font-bold">Herika - Tatuadora | Aluna da Mentoria</h4>
+                                <div class="flex text-yellow-500">
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                    <i class="fas fa-star"></i>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="testimonial-insight-card">
+                    <span class="service-card__pill">Resultados</span>
+                    <h3>Mentoria com evolução perceptível em pouco tempo.</h3>
+                    <p>O depoimento reforça o que o posicionamento da página precisa vender: proximidade, acompanhamento e transformação prática, não apenas conteúdo gravado.</p>
+                    <div class="testimonial-insight-stats">
+                        <div><strong>7 meses</strong><span>de acompanhamento contínuo</span></div>
+                        <div><strong>1º tattoo</strong><span>em menos de 10 dias</span></div>
+                        <div><strong>Perfil próprio</strong><span>estúdio e clientes em construção</span></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Feedback/Survey Section -->
+    <section id="feedback" class="py-20 bg-zinc-900">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16 section-heading-shell">
+                <span class="section-kicker">Escuta ativa</span>
+                <h2 class="marker-font text-4xl mb-6 text-white">Sua Opinião é <span class="text-rose-600">Importante</span></h2>
+                <p class="text-gray-300 max-w-2xl mx-auto mb-8" id="feedback-desc">
+                    Ajude-nos a melhorar nossos serviços! Sua opinião é fundamental para continuarmos oferecendo a melhor experiência em tatuagem e piercing.
+                </p>
+                <div class="bg-zinc-800 rounded-lg p-8 max-w-2xl mx-auto feedback-panel">
+                    <div class="text-rose-600 text-6xl mb-6">
+                        <i class="fas fa-comment-dots"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold text-white mb-4">Pesquisa de Satisfação</h3>
+                    <p class="text-gray-300 mb-6" id="feedback-form-desc">
+                        Compartilhe sua experiência conosco e nos ajude a crescer. Sua avaliação leva apenas 2 minutos e é muito valiosa para nós.
+                    </p>
+                    <a href="https://docs.google.com/forms/d/e/1FAIpQLSfc1YWE-b2CsVez2yRvafUgYDSx5UAAU6HvM8MIclrzOSWc2Q/viewform?usp=dialog" target="_blank" rel="noopener" class="btn-primary bg-rose-600 hover:bg-rose-700 text-white font-bold py-4 px-8 rounded-full inline-flex items-center transition duration-300 transform hover:scale-105">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="mr-3" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+                            <polyline points="14,2 14,8 20,8"></polyline>
+                            <line x1="16" y1="13" x2="8" y2="13"></line>
+                            <line x1="16" y1="17" x2="8" y2="17"></line>
+                            <polyline points="10,9 9,9 8,9"></polyline>
+                        </svg>
+                        <span id="feedback-btn">Responder Pesquisa</span>
+                    </a>
+                    <div class="mt-6 text-sm text-gray-400">
+                        <p id="feedback-note1">✓ Anônimo e seguro</p>
+                        <p id="feedback-note2">✓ Apenas 2 minutos</p>
+                        <p id="feedback-note3">✓ Sua privacidade protegida</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Events Section -->
+    <section id="events" class="py-12 bg-zinc-900">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-8 section-heading-shell">
+                <span class="section-kicker">Presença na cena artística</span>
+                <h2 class="marker-font text-3xl mb-4 text-white">Eventos e <span class="text-rose-600">Competições</span></h2>
+                <p class="text-gray-300 max-w-2xl mx-auto" id="events-desc">
+                    Participe dos nossos eventos especiais e competições de tatuagem. Uma oportunidade única para conectar com outros artistas, mostrar seu talento e fazer parte da comunidade artística local.
+                </p>
+            </div>
+            
+            <!-- Event Card with Image Carousel -->
+            <div class="max-w-6xl mx-auto mb-8 events-showcase">
+                <div class="bg-zinc-800 rounded-lg p-2 shadow-lg events-card-shell">
+                    <!-- Image Carousel -->
+                    <div class="relative mb-2 events-media-shell">
+                        <div id="event-carousel" class="relative overflow-hidden rounded-lg">
+                            <div id="event-images" class="flex transition-transform duration-500">
+                                <div class="w-full flex-shrink-0">
+                                    <img src="img/evento1.png" alt="Evento de Arte" class="w-full h-64 object-contain rounded-lg shadow bg-zinc-700 cursor-pointer" id="open-event-img-modal">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+            
+                    <!-- Event Content -->
+                    <div class="text-center events-content-shell">
+                        <div class="events-copy-block">
+                        <p class="text-gray-300 text-sm leading-relaxed">
+                            No dia 23 de agosto, das 14h às 23h, o Mercado Público Municipal vai ser palco de uma verdadeira celebração à arte. Ocupando o centro com muita arte, música, poesia, feira criativa, exposição, grafite, gastronomia e encontros especiais. Tudo isso DE GRAÇA e aquele clima único do Salada que a gente ama!
+                        </p>
+                        </div>
+                        
+                        
+                        <!-- Event Details -->
+                        <div class="mt-3 grid grid-cols-2 md:grid-cols-3 gap-3 text-center events-detail-grid">
+                            <div class="bg-zinc-700 rounded-lg p-5 md:p-6 flex flex-col items-center min-h-[120px] event-detail-card">
+                                <div class="text-rose-600 text-3xl mb-3">📍</div>
+                                <div class="text-white font-bold text-lg mb-2">Local</div>
+                                <div class="text-gray-400 text-base cursor-pointer hover:text-rose-400 transition duration-300" onclick="openGoogleMaps()" id="event-location">Mercado Público Municipal</div>
+                            </div>
+                            <div class="bg-zinc-700 rounded-lg p-5 md:p-6 flex flex-col items-center min-h-[120px] event-detail-card">
+                                <div class="text-rose-600 text-3xl mb-3">📅</div>
+                                <div class="text-white font-bold text-lg mb-2">Data</div>
+                                <div class="text-gray-400 text-base" id="event-date">23 de agosto</div>
+                            </div>
+                            <div class="bg-zinc-700 rounded-lg p-5 md:p-6 flex flex-col items-center min-h-[120px] event-detail-card">
+                                <div class="text-rose-600 text-3xl mb-3">🕑</div>
+                                <div class="text-white font-bold text-lg mb-2">Horário</div>
+                                <div class="text-gray-400 text-base" id="event-time">14h às 23h</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-black">
+        <div class="container mx-auto px-4">
+            <div class="text-center mb-16 section-heading-shell">
+                <span class="section-kicker">Agendamento e atendimento</span>
+                <h2 class="marker-font text-4xl mb-6 text-white">Entre em <span class="text-rose-600">Contato</span></h2>
+                <p class="text-gray-300 max-w-2xl mx-auto">
+                    Estamos ansiosos para transformar suas ideias em arte ou ajudar em sua jornada como tatuador. Entre em contato para agendar uma consulta ou tirar suas dúvidas.
+                </p>
+            </div>
+            
+            <div class="flex flex-col lg:flex-row gap-12 contact-showcase">
+                <div class="lg:w-1/2">
+                    <form id="contact-form" class="space-y-6 contact-form-panel">
+                        <div>
+                            <label for="name" class="block text-white mb-2">Nome Completo</label>
+                            <input type="text" id="name" class="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-rose-600 transition duration-300" placeholder="Seu nome">
+                        </div>
+                        
+                        <div>
+                            <label for="email" class="block text-white mb-2">Email</label>
+                            <input type="email" id="email" class="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-rose-600 transition duration-300" placeholder="seu@email.com">
+                        </div>
+                        
+                        <div>
+                            <label for="phone" class="block text-white mb-2">Telefone</label>
+                            <input type="tel" id="phone" class="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-rose-600 transition duration-300" placeholder="(00) 00000-0000">
+                        </div>
+                        
+                        <div>
+                            <label for="service" class="block text-white mb-2">Interesse</label>
+                            <select id="service" class="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-rose-600 transition duration-300">
+                                <option value="" disabled selected>Selecione uma opção</option>
+                                <option value="custom">Tatuagem Personalizada</option>
+                                <option value="cover">Cobertura/Restauração</option>
+                                <option value="mentorship-basic">Mentoria</option>
+                                <option value="other">Outro</option>
+                            </select>
+                        </div>
+                        
+                        <div>
+                            <label for="message" class="block text-white mb-2">Mensagem</label>
+                            <textarea id="message" rows="5" class="w-full bg-zinc-800 border border-zinc-700 rounded-lg px-4 py-3 text-white focus:outline-none focus:border-rose-600 transition duration-300" placeholder="Descreva sua ideia ou dúvida..."></textarea>
+                        </div>
+                        
+                        <div class="text-center">
+                            <button type="submit" class="btn-primary bg-rose-600 hover:bg-rose-700 text-white font-bold py-3 px-8 rounded-full">
+                                Enviar Mensagem
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                
+                <div class="lg:w-1/2">
+                    <div class="bg-zinc-800 rounded-lg p-8 h-full contact-info-panel">
+                        <h3 class="text-2xl font-bold text-white mb-6">Informações de Contato</h3>
+                        <p class="contact-info-intro">Escolha o canal mais conveniente para tirar dúvidas, pedir orçamento ou alinhar os detalhes do seu projeto.</p>
+                        
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div class="text-rose-600 text-xl mr-4">
+                                    <i class="fas fa-map-marker-alt"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-white font-bold">Endereço</h4>
+                                    <p class="text-gray-300">
+                                        <a href="https://www.google.com/maps?q=Rua+Corup%C3%A1,+119,+Ubatuba,+São+Francisco+do+Sul,+Santa+Catarina" target="_blank" rel="noopener" class="underline hover:text-rose-600 transition duration-300">Rua Corupá, 119 - Ubatuba, São Francisco do Sul, SC</a>
+                                        <div class="mt-4 rounded-lg overflow-hidden shadow-lg">
+                                            <iframe src="https://www.google.com/maps?q=Rua+Corup%C3%A1,+119,+Ubatuba,+São+Francisco+do+Sul,+Santa+Catarina&output=embed" width="100%" height="200" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                                        </div>
+                                    </p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="text-rose-600 text-xl mr-4">
+                                    <i class="fas fa-phone-alt"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-white font-bold">Telefone</h4>
+                                    <p class="text-gray-300">(47) 99644-7482</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="text-rose-600 text-xl mr-4">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-white font-bold">Email</h4>
+                                    <p class="text-gray-300">marcos.roberto.sfs@gmail.com</p>
+                                </div>
+                            </div>
+                            
+                            <div class="flex items-start">
+                                <div class="text-rose-600 text-xl mr-4">
+                                    <i class="fas fa-clock"></i>
+                                </div>
+                                <div>
+                                    <h4 class="text-white font-bold">Horário de Funcionamento</h4>
+                                    <p class="text-gray-300">
+                                        Segunda a Sexta: 10h às 20h<br>
+                                        Sábado: 10h às 18h<br>
+                                        Domingo: Fechado
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="mt-8">
+                            <h4 class="text-white font-bold mb-4">Siga-nos</h4>
+                            <div class="flex space-x-4">
+                                <a href="https://www.instagram.com/marcostattoo_art/" class="w-10 h-10 bg-zinc-700 rounded-full flex items-center justify-center text-white hover:bg-rose-600 transition duration-300">
+                                    <i class="fab fa-instagram"></i>
+                                </a>
+                                <a href="https://www.facebook.com/share/168j49hxoa/" class="w-10 h-10 bg-zinc-700 rounded-full flex items-center justify-center text-white hover:bg-rose-600 transition duration-300">
+                                    <i class="fab fa-facebook-f"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- Footer -->
+    <footer class="bg-black py-12">
+        <div class="container mx-auto px-4">
+            <div class="flex flex-col md:flex-row justify-between items-center mb-8 footer-shell">
+                <div class="footer-brand-block">
+                    <div class="text-rose-600 marker-font text-3xl mb-4 md:mb-0">Marcos Tattoo</div>
+                    <p class="footer-copy-lead">Tatuagem autoral, mentoria prática e experiência visual mais clara do primeiro clique ao contato.</p>
+                </div>
+                <div class="flex space-x-6 footer-nav-wrap">
+                    <a href="#home" class="text-gray-300 hover:text-white transition duration-300" id="footer-home">Home</a>
+                    <a href="#about" class="text-gray-300 hover:text-white transition duration-300" id="footer-about">Sobre</a>
+                    <a href="#gallery" class="text-gray-300 hover:text-white transition duration-300" id="footer-gallery">Galeria</a>
+                    <a href="#services" class="text-gray-300 hover:text-white transition duration-300" id="footer-services">Serviços</a>
+                    <a href="#mentorship" class="text-gray-300 hover:text-white transition duration-300" id="footer-mentorship">Mentoria</a>
+                    <a href="#events" class="text-gray-300 hover:text-white transition duration-300" id="footer-events">Eventos</a>
+                    <a href="#contact" class="text-gray-300 hover:text-white transition duration-300" id="footer-contact">Contato</a>
+                </div>
+            </div>
+            
+            <hr class="border-zinc-800 mb-8">
+            
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="text-gray-400 mb-4 md:mb-0 w-full text-center">
+                    <span id="footer-copy">&copy; 2025 Marcos Tattoo Studio. Todos os direitos reservados.</span>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Success Modal -->
+    <div id="success-modal" class="modal fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-80 opacity-0 pointer-events-none">
+        <div class="bg-zinc-800 rounded-lg p-8 max-w-md w-full mx-4">
+            <div class="text-center">
+                <div class="text-green-500 text-5xl mb-4">
+                    <i class="fas fa-check-circle"></i>
+                </div>
+                <h3 class="text-2xl font-bold text-white mb-2">Mensagem Enviada!</h3>
+                <p class="text-gray-300 mb-6">
+                    Obrigado pelo seu contato. Retornaremos em breve para agendar sua consulta ou tirar suas dúvidas.
+                </p>
+                <button id="close-modal" class="bg-rose-600 hover:bg-rose-700 text-white font-bold py-3 px-8 rounded-full transition duration-300">
+                    Fechar
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Back to Top Button -->
+    <button id="back-to-top" class="fixed bottom-6 right-6 bg-rose-600 text-white w-12 h-12 rounded-full flex items-center justify-center shadow-lg opacity-0 pointer-events-none transition-opacity duration-300">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 10l7-7m0 0l7 7m-7-7v18"></path>
+        </svg>
+    </button>
+
+    <!-- Scripts -->
+    <!-- Modal para imagem do evento -->
+    <div id="event-img-modal" class="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-80 backdrop-blur-lg opacity-0 pointer-events-none transition-opacity duration-300">
+        <div class="relative bg-transparent flex items-center justify-center w-full h-full">
+            <img src="img/evento1.png" alt="Evento de Arte" class="max-w-2xl w-full h-auto rounded-lg shadow-2xl">
+            <button id="close-event-img-modal" class="absolute top-8 right-8 bg-rose-600 hover:bg-rose-700 text-white font-bold py-2 px-6 rounded-full text-lg shadow-lg transition duration-300">Fechar</button>
+        </div>
+    </div>
+    <script src="script.js" defer></script>
+    <!-- Modal para imagem de piercing -->
+    <div id="piercing-img-modal" class="fixed inset-0 flex items-center justify-center z-50 bg-black bg-opacity-80 backdrop-blur-lg opacity-0 pointer-events-none transition-opacity duration-300">
+        <button id="close-piercing-modal" aria-label="Fechar" style="position:absolute;top:18px;right:18px;z-index:10;background:rgba(0,0,0,0.7);color:#fff;border:none;border-radius:50%;width:44px;height:44px;display:flex;align-items:center;justify-content:center;font-size:2rem;cursor:pointer;transition:background 0.2s;">
+            &times;
+        </button>
+        <img id="piercing-modal-img" src="" alt="Piercing Zoom" class="max-h-[80vh] max-w-[90vw] rounded-lg shadow-2xl border-4 border-rose-600" />
+    </div>
+
+    <script>
+    // Lightbox para galeria de piercings
+    document.addEventListener('DOMContentLoaded', function() {
+        const imgs = document.querySelectorAll('.piercing-img');
+        const modal = document.getElementById('piercing-img-modal');
+        const modalImg = document.getElementById('piercing-modal-img');
+        const closeBtn = document.getElementById('close-piercing-modal');
+        imgs.forEach(img => {
+            img.style.cursor = 'zoom-in';
+            img.addEventListener('click', function() {
+                modalImg.src = this.getAttribute('data-img');
+                modal.classList.remove('opacity-0', 'pointer-events-none');
+                modal.classList.add('opacity-100');
+            });
+        });
+        // Fechar ao clicar no botão X
+        closeBtn.addEventListener('click', function(e) {
+            e.stopPropagation();
+            modal.classList.add('opacity-0', 'pointer-events-none');
+            modal.classList.remove('opacity-100');
+            modalImg.src = '';
+        });
+        // Fechar ao clicar fora da imagem
+        modal.addEventListener('click', function(e) {
+            if (e.target === modal) {
+                modal.classList.add('opacity-0', 'pointer-events-none');
+                modal.classList.remove('opacity-100');
+                modalImg.src = '';
+            }
+        });
+    });
+    </script>
+    <div vw class="enabled">
+        <div vw-access-button class="active"></div>
+        <div vw-plugin-wrapper>
+            <div class="vw-plugin-top-wrapper"></div>
+        </div>
+    </div>
+    <script src="https://vlibras.gov.br/app/vlibras-plugin.js"></script>
+    <script>
+    new window.VLibras.Widget('https://vlibras.gov.br/app');
+    </script>
+</body>
+</html>
