@@ -932,6 +932,27 @@
   }
 
 @media (max-width: 768px) {
+  html,
+  body {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: hidden;
+  }
+
+  .container {
+    width: 100%;
+    max-width: 100%;
+    padding-left: 1rem !important;
+    padding-right: 1rem !important;
+  }
+
+  img,
+  video,
+  iframe,
+  svg {
+    max-width: 100%;
+  }
+
   .floating-controls {
     top: 74px !important;
     right: 10px !important;
@@ -1066,6 +1087,7 @@
   }
 
   #home {
+    height: auto !important;
     min-height: 100svh;
     padding: 8rem 1rem 3rem !important;
   }
@@ -1096,6 +1118,11 @@
   .hero-shell {
     grid-template-columns: 1fr;
     gap: 1.5rem;
+    min-width: 0;
+  }
+
+  .hero-artwork img {
+    object-fit: cover !important;
   }
 
   .hero-copy {
@@ -1161,6 +1188,7 @@
   .services-intro-card,
   .events-card-shell {
     grid-template-columns: 1fr;
+    min-width: 0;
   }
 
   .services-intro-card {
@@ -1278,6 +1306,7 @@
 
   .contact-showcase {
     gap: 1.5rem !important;
+    min-width: 0;
   }
 
   .contact-form-panel,
