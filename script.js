@@ -412,6 +412,202 @@ const translations = {
     }
 };
 
+const extraTranslations = {
+    pt: {
+        'control-menu-aria': 'Abrir menu de acessibilidade e idioma',
+        'menu-toggle-aria': 'Abrir menu',
+        'mobile-menu-close-aria': 'Fechar menu',
+        'back-to-top-aria': 'Voltar ao topo',
+        'hero-eyebrow': 'Estudio autoral em Sao Francisco do Sul',
+        'hero-title': 'Tatuagem com presenca, conceito e assinatura.',
+        'hero-highlight-2-value': '6 anos',
+        'hero-highlight-1-label': 'premiacoes em competicoes',
+        'hero-highlight-2-label': 'de experiencia profissional',
+        'hero-highlight-3-label': 'mentoria pratica e direcionada',
+        'hero-feature-aria': 'Destaques do estudio',
+        'hero-feature-kicker': 'Experiencia do estudio',
+        'hero-feature-title': 'Processo mais claro, visual mais forte e decisao mais facil.',
+        'hero-feature-item-1': 'Atendimento com briefing e direcao visual.',
+        'hero-feature-item-2': 'Estilos com foco em identidade e composicao.',
+        'hero-feature-item-3': 'Mentoria para evolucao tecnica e posicionamento.',
+        'hero-feature-badge-1': 'Atendimento autoral',
+        'hero-feature-badge-2': 'Biosseguranca',
+        'hero-feature-badge-3': 'Projeto exclusivo',
+        'hero-trust-1': 'Blackwork',
+        'hero-trust-2': 'Geek',
+        'hero-trust-3': 'Neotradicional',
+        'hero-trust-4': 'Projetos personalizados',
+        'hero-trust-5': 'Mentoria profissional',
+        'hero-trust-6': 'Piercing com biosseguranca',
+        'about-kicker': 'Trajetoria e visao artistica',
+        'services-kicker': 'Solucoes criativas para cada projeto',
+        'services-intro-eyebrow': 'Como funciona',
+        'services-intro-title': 'Da ideia ao desenho final com mais clareza e direcao.',
+        'services-intro-text': 'Cada atendimento parte de conversa, leitura de referencia, composicao e execucao com foco em identidade visual, encaixe no corpo e resultado duradouro.',
+        'services-metric-1-title': 'Briefing',
+        'services-metric-1-desc': 'Entendimento do conceito e estilo',
+        'services-metric-2-title': 'Projeto',
+        'services-metric-2-desc': 'Composicao pensada para a anatomia',
+        'services-metric-3-title': 'Execucao',
+        'services-metric-3-desc': 'Tecnica, acabamento e cuidado',
+        'service-1-pill': 'Autoral',
+        'service-2-pill': 'Transformacao',
+        'service-3-pill': 'Especialidade',
+        'service-4-pill': 'Direcao criativa',
+        'service-5-pill': 'Escala',
+        'piercing-kicker': 'Talita Body Art',
+        'piercing-1-pill': 'Facial',
+        'piercing-2-pill': 'Corporal',
+        'piercing-3-pill': 'Seguranca',
+        'mentorship-kicker': 'Formacao com acompanhamento real',
+        'testimonials-kicker': 'Prova social',
+        'testimonial-insight-pill': 'Resultados',
+        'testimonial-insight-title': 'Mentoria com evolucao perceptivel em pouco tempo.',
+        'testimonial-insight-text': 'O depoimento reforca o que o posicionamento da pagina precisa vender: proximidade, acompanhamento e transformacao pratica, nao apenas conteudo gravado.',
+        'testimonial-insight-stat-1-value': '7 meses',
+        'testimonial-insight-stat-1-label': 'de acompanhamento continuo',
+        'testimonial-insight-stat-2-value': '1a tattoo',
+        'testimonial-insight-stat-2-label': 'em menos de 10 dias',
+        'testimonial-insight-stat-3-value': 'Perfil proprio',
+        'testimonial-insight-stat-3-label': 'estudio e clientes em construcao',
+        'feedback-kicker': 'Escuta ativa',
+        'events-kicker': 'Presenca na cena artistica',
+        'contact-kicker': 'Agendamento e atendimento',
+        'contact-info-intro': 'Escolha o canal mais conveniente para tirar duvidas, pedir orcamento ou alinhar os detalhes do seu projeto.',
+        'footer-copy-lead': 'Tatuagem autoral, mentoria pratica e experiencia visual mais clara do primeiro clique ao contato.'
+    },
+    en: {
+        'control-menu-aria': 'Open accessibility and language menu',
+        'menu-toggle-aria': 'Open menu',
+        'mobile-menu-close-aria': 'Close menu',
+        'back-to-top-aria': 'Back to top',
+        'hero-eyebrow': 'Authorial studio in Sao Francisco do Sul',
+        'hero-title': 'Tattooing with presence, concept, and signature.',
+        'hero-highlight-2-value': '6 years',
+        'hero-highlight-1-label': 'awards in competitions',
+        'hero-highlight-2-label': 'of professional experience',
+        'hero-highlight-3-label': 'practical, focused mentorship',
+        'hero-feature-aria': 'Studio highlights',
+        'hero-feature-kicker': 'Studio experience',
+        'hero-feature-title': 'A clearer process, stronger visuals, and easier decisions.',
+        'hero-feature-item-1': 'Service with briefing and visual direction.',
+        'hero-feature-item-2': 'Styles focused on identity and composition.',
+        'hero-feature-item-3': 'Mentorship for technical growth and positioning.',
+        'hero-feature-badge-1': 'Authorial service',
+        'hero-feature-badge-2': 'Biosafety',
+        'hero-feature-badge-3': 'Exclusive project',
+        'hero-trust-1': 'Blackwork',
+        'hero-trust-2': 'Geek',
+        'hero-trust-3': 'Neotraditional',
+        'hero-trust-4': 'Custom projects',
+        'hero-trust-5': 'Professional mentorship',
+        'hero-trust-6': 'Piercing with biosafety',
+        'about-kicker': 'Journey and artistic vision',
+        'services-kicker': 'Creative solutions for each project',
+        'services-intro-eyebrow': 'How it works',
+        'services-intro-title': 'From idea to final drawing with more clarity and direction.',
+        'services-intro-text': 'Each project starts with conversation, reference reading, composition, and execution focused on visual identity, body fit, and long-lasting results.',
+        'services-metric-1-title': 'Briefing',
+        'services-metric-1-desc': 'Understanding the concept and style',
+        'services-metric-2-title': 'Project',
+        'services-metric-2-desc': 'Composition designed for anatomy',
+        'services-metric-3-title': 'Execution',
+        'services-metric-3-desc': 'Technique, finish, and care',
+        'service-1-pill': 'Authorial',
+        'service-2-pill': 'Transformation',
+        'service-3-pill': 'Specialty',
+        'service-4-pill': 'Creative direction',
+        'service-5-pill': 'Scale',
+        'piercing-kicker': 'Talita Body Art',
+        'piercing-1-pill': 'Facial',
+        'piercing-2-pill': 'Body',
+        'piercing-3-pill': 'Safety',
+        'mentorship-kicker': 'Training with real guidance',
+        'testimonials-kicker': 'Social proof',
+        'testimonial-insight-pill': 'Results',
+        'testimonial-insight-title': 'Mentorship with visible progress in a short time.',
+        'testimonial-insight-text': 'This testimonial reinforces what the page needs to sell: closeness, guidance, and practical transformation, not just recorded content.',
+        'testimonial-insight-stat-1-value': '7 months',
+        'testimonial-insight-stat-1-label': 'of continuous guidance',
+        'testimonial-insight-stat-2-value': '1st tattoo',
+        'testimonial-insight-stat-2-label': 'in less than 10 days',
+        'testimonial-insight-stat-3-value': 'Own profile',
+        'testimonial-insight-stat-3-label': 'studio and clients under construction',
+        'feedback-kicker': 'Active listening',
+        'events-kicker': 'Presence in the art scene',
+        'contact-kicker': 'Booking and support',
+        'contact-info-intro': 'Choose the most convenient channel to ask questions, request a quote, or align your project details.',
+        'footer-copy-lead': 'Authorial tattooing, practical mentorship, and a clearer visual experience from the first click to contact.'
+    },
+    es: {
+        'control-menu-aria': 'Abrir menu de accesibilidad e idioma',
+        'menu-toggle-aria': 'Abrir menu',
+        'mobile-menu-close-aria': 'Cerrar menu',
+        'back-to-top-aria': 'Volver arriba',
+        'hero-eyebrow': 'Estudio autoral en Sao Francisco do Sul',
+        'hero-title': 'Tatuaje con presencia, concepto y firma.',
+        'hero-highlight-2-value': '6 anos',
+        'hero-highlight-1-label': 'premios en competiciones',
+        'hero-highlight-2-label': 'de experiencia profesional',
+        'hero-highlight-3-label': 'mentoria practica y enfocada',
+        'hero-feature-aria': 'Destaques del estudio',
+        'hero-feature-kicker': 'Experiencia del estudio',
+        'hero-feature-title': 'Un proceso mas claro, una imagen mas fuerte y decisiones mas faciles.',
+        'hero-feature-item-1': 'Atencion con briefing y direccion visual.',
+        'hero-feature-item-2': 'Estilos con foco en identidad y composicion.',
+        'hero-feature-item-3': 'Mentoria para evolucion tecnica y posicionamiento.',
+        'hero-feature-badge-1': 'Atencion autoral',
+        'hero-feature-badge-2': 'Bioseguridad',
+        'hero-feature-badge-3': 'Proyecto exclusivo',
+        'hero-trust-1': 'Blackwork',
+        'hero-trust-2': 'Geek',
+        'hero-trust-3': 'Neotradicional',
+        'hero-trust-4': 'Proyectos personalizados',
+        'hero-trust-5': 'Mentoria profesional',
+        'hero-trust-6': 'Piercing con bioseguridad',
+        'about-kicker': 'Trayectoria y vision artistica',
+        'services-kicker': 'Soluciones creativas para cada proyecto',
+        'services-intro-eyebrow': 'Como funciona',
+        'services-intro-title': 'De la idea al diseno final con mas claridad y direccion.',
+        'services-intro-text': 'Cada proyecto parte de conversacion, lectura de referencias, composicion y ejecucion con foco en identidad visual, encaje en el cuerpo y resultado duradero.',
+        'services-metric-1-title': 'Briefing',
+        'services-metric-1-desc': 'Entendimiento del concepto y estilo',
+        'services-metric-2-title': 'Proyecto',
+        'services-metric-2-desc': 'Composicion pensada para la anatomia',
+        'services-metric-3-title': 'Ejecucion',
+        'services-metric-3-desc': 'Tecnica, acabado y cuidado',
+        'service-1-pill': 'Autoral',
+        'service-2-pill': 'Transformacion',
+        'service-3-pill': 'Especialidad',
+        'service-4-pill': 'Direccion creativa',
+        'service-5-pill': 'Escala',
+        'piercing-kicker': 'Talita Body Art',
+        'piercing-1-pill': 'Facial',
+        'piercing-2-pill': 'Corporal',
+        'piercing-3-pill': 'Seguridad',
+        'mentorship-kicker': 'Formacion con acompanamiento real',
+        'testimonials-kicker': 'Prueba social',
+        'testimonial-insight-pill': 'Resultados',
+        'testimonial-insight-title': 'Mentoria con evolucion perceptible en poco tiempo.',
+        'testimonial-insight-text': 'El testimonio refuerza lo que la pagina necesita vender: cercania, acompanamiento y transformacion practica, no solo contenido grabado.',
+        'testimonial-insight-stat-1-value': '7 meses',
+        'testimonial-insight-stat-1-label': 'de acompanamiento continuo',
+        'testimonial-insight-stat-2-value': '1er tattoo',
+        'testimonial-insight-stat-2-label': 'en menos de 10 dias',
+        'testimonial-insight-stat-3-value': 'Perfil propio',
+        'testimonial-insight-stat-3-label': 'estudio y clientes en construccion',
+        'feedback-kicker': 'Escucha activa',
+        'events-kicker': 'Presencia en la escena artistica',
+        'contact-kicker': 'Reservas y atencion',
+        'contact-info-intro': 'Elige el canal mas conveniente para resolver dudas, pedir presupuesto o alinear los detalles de tu proyecto.',
+        'footer-copy-lead': 'Tatuaje autoral, mentoria practica y una experiencia visual mas clara desde el primer clic hasta el contacto.'
+    }
+};
+
+Object.keys(extraTranslations).forEach((lang) => {
+    Object.assign(translations[lang], extraTranslations[lang]);
+});
+
 function setText(selector, value) {
     const element = document.querySelector(selector);
     if (element && value !== undefined) {
@@ -430,6 +626,13 @@ function setPlaceholder(selector, value) {
     const element = document.querySelector(selector);
     if (element && value !== undefined) {
         element.placeholder = value;
+    }
+}
+
+function setAttribute(selector, name, value) {
+    const element = document.querySelector(selector);
+    if (element && value !== undefined) {
+        element.setAttribute(name, value);
     }
 }
 
@@ -463,6 +666,10 @@ function setLanguage(lang) {
         currentLangLabel.textContent = copy.langLabel;
     }
     updateThemeToggleText();
+    setAttribute('#controlMenuBtn', 'aria-label', copy['control-menu-aria']);
+    setAttribute('#menu-toggle', 'aria-label', copy['menu-toggle-aria']);
+    setAttribute('#mobile-menu-close', 'aria-label', copy['mobile-menu-close-aria']);
+    setAttribute('#back-to-top', 'aria-label', copy['back-to-top-aria']);
 
     [
         'nav-home', 'nav-about', 'nav-gallery', 'nav-services',
@@ -480,10 +687,28 @@ function setLanguage(lang) {
     });
 
     setText('#preloader-text', copy['preloader-text']);
+    setText('#hero-eyebrow', copy['hero-eyebrow']);
+    setText('#hero-title', copy['hero-title']);
     setText('#hero-desc', copy['hero-desc']);
     setText('#hero-btn1', copy['hero-btn1']);
     setText('#hero-btn2', copy['hero-btn2']);
+    setText('#hero-highlight-2-label', copy['hero-highlight-2-label']);
+    setText('#hero-highlight-2-value', copy['hero-highlight-2-value']);
+    ['hero-highlight-1-label', 'hero-highlight-3-label'].forEach((key) => {
+        setText(`#${key}`, copy[key]);
+    });
+    setAttribute('#hero-feature-panel', 'aria-label', copy['hero-feature-aria']);
+    [
+        'hero-feature-kicker', 'hero-feature-title',
+        'hero-feature-item-1', 'hero-feature-item-2', 'hero-feature-item-3',
+        'hero-feature-badge-1', 'hero-feature-badge-2', 'hero-feature-badge-3',
+        'hero-trust-1', 'hero-trust-2', 'hero-trust-3',
+        'hero-trust-4', 'hero-trust-5', 'hero-trust-6'
+    ].forEach((key) => {
+        setText(`#${key}`, copy[key]);
+    });
 
+    setText('#about-kicker', copy['about-kicker']);
     setHtml('#about-title', copy['about-title']);
     setHtml('#about-desc', copy['about-desc']);
     const aboutTitles = document.querySelectorAll('#about .flex.flex-wrap.gap-4.justify-center h3');
@@ -498,8 +723,17 @@ function setLanguage(lang) {
     setText('#gallery-desc', copy['gallery-desc']);
     updateGalleryButtonLabel();
 
+    setText('#services-kicker', copy['services-kicker']);
     setHtml('#services .text-center h2', copy['services-title']);
     setText('#services-desc', copy['services-desc']);
+    [
+        'services-intro-eyebrow', 'services-intro-title', 'services-intro-text',
+        'services-metric-1-title', 'services-metric-1-desc',
+        'services-metric-2-title', 'services-metric-2-desc',
+        'services-metric-3-title', 'services-metric-3-desc'
+    ].forEach((key) => {
+        setText(`#${key}`, copy[key]);
+    });
     const servicesSection = document.getElementById('services');
     const serviceCards = servicesSection ? servicesSection.querySelectorAll('.grid > div.bg-zinc-800') : [];
     serviceCards.forEach((card, index) => {
@@ -515,8 +749,10 @@ function setLanguage(lang) {
                 textNode.textContent = copy[`service-${number}-point-${itemIndex + 1}`];
             }
         });
+        setText(`#service-${number}-pill`, copy[`service-${number}-pill`]);
     });
 
+    setText('#piercing-kicker', copy['piercing-kicker']);
     setHtml('#piercing .text-center h2', copy['piercing-title']);
     setText('#piercing-desc', copy['piercing-desc']);
     const piercingSection = document.getElementById('piercing');
@@ -527,12 +763,14 @@ function setLanguage(lang) {
         const description = card.querySelector('p');
         if (title) title.textContent = copy[`piercing-${number}-title`];
         if (description) description.textContent = copy[`piercing-${number}-desc`];
+        setText(`#piercing-${number}-pill`, copy[`piercing-${number}-pill`]);
     });
     setText('#piercing-gallery-title', copy['piercing-gallery-title']);
     setText('#piercing-btn', copy['piercing-btn']);
     setText('#piercing-insta', copy['piercing-insta']);
 
     const mentorshipSection = document.getElementById('mentorship');
+    setText('#mentorship-kicker', copy['mentorship-kicker']);
     setHtml('#mentorship .text-center h2', copy['mentorship-title']);
     setText('#mentorship-desc', copy['mentorship-desc']);
     const mentorshipHeading = mentorshipSection ? mentorshipSection.querySelector('h3') : null;
@@ -550,11 +788,21 @@ function setLanguage(lang) {
     });
     setText('#mentorship-btn', copy['mentorship-btn']);
 
+    setText('#testimonials-kicker', copy['testimonials-kicker']);
     setHtml('#testimonials .text-center h2', copy['testimonials-title']);
     setText('#testimonials-desc', copy['testimonials-desc']);
-    setText('#testimonials .testimonial-card p', copy['testimonial-1-quote']);
-    setText('#testimonials .testimonial-card h4', copy['testimonial-1-author']);
+    setText('#testimonial-1-quote', copy['testimonial-1-quote']);
+    setText('#testimonial-1-author', copy['testimonial-1-author']);
+    [
+        'testimonial-insight-pill', 'testimonial-insight-title', 'testimonial-insight-text',
+        'testimonial-insight-stat-1-value', 'testimonial-insight-stat-1-label',
+        'testimonial-insight-stat-2-value', 'testimonial-insight-stat-2-label',
+        'testimonial-insight-stat-3-value', 'testimonial-insight-stat-3-label'
+    ].forEach((key) => {
+        setText(`#${key}`, copy[key]);
+    });
 
+    setText('#feedback-kicker', copy['feedback-kicker']);
     setHtml('#feedback .text-center h2', copy['feedback-title']);
     setText('#feedback-desc', copy['feedback-desc']);
     setText('#feedback .bg-zinc-800 h3', copy['feedback-form-title']);
@@ -564,6 +812,7 @@ function setLanguage(lang) {
     setText('#feedback-note2', copy['feedback-note2']);
     setText('#feedback-note3', copy['feedback-note3']);
 
+    setText('#events-kicker', copy['events-kicker']);
     setHtml('#events .text-center h2', copy['events-title']);
     setText('#events-desc', copy['events-desc']);
     setText('#events .bg-zinc-800 .text-center > p', copy['events-card-desc']);
@@ -585,6 +834,7 @@ function setLanguage(lang) {
     setText('#event-date', copy['events-date']);
     setText('#event-time', copy['events-time']);
 
+    setText('#contact-kicker', copy['contact-kicker']);
     setHtml('#contact .text-center h2', copy['contact-title']);
     setText('#contact .text-center p', copy['contact-desc']);
     setText('label[for="name"]', copy['contact-name-label']);
@@ -624,6 +874,7 @@ function setLanguage(lang) {
         if (title) title.textContent = copy['contact-hours-title'];
         if (value) value.innerHTML = copy['contact-hours-value'];
     }
+    setText('#contact-info-intro', copy['contact-info-intro']);
     setText('#contact .mt-8 h4', copy['contact-follow-title']);
 
     setText('#footer-home', copy['nav-home']);
@@ -634,6 +885,7 @@ function setLanguage(lang) {
     setText('#footer-events', copy['nav-events']);
     setText('#footer-contact', copy['nav-contact']);
     setHtml('#footer-copy', copy['footer-copy']);
+    setText('#footer-copy-lead', copy['footer-copy-lead']);
 
     setText('#success-modal h3', copy['success-title']);
     setText('#success-modal p', copy['success-desc']);
